@@ -18,6 +18,7 @@ Supported optimizers:
 7. RMSProp with Learning Rate Dropout [[arXiv]](https://arxiv.org/pdf/1912.00144.pdf)
 8. RAdam: On the Variance of the Adaptive Learning Rate and Beyond [[arXiv]](https://arxiv.org/abs/1908.03265)
 9. RAdam with Learning Rate Dropout [[arXiv]](https://arxiv.org/pdf/1912.00144.pdf)
+10. AdaBound: Adaptive Gradient Methods with Dynamic Bound of Learning Rate [[ICLR2019]](https://openreview.net/pdf?id=Bkg3g2R9FX) 
 
 Results:
 ------

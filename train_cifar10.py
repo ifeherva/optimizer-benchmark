@@ -136,7 +136,6 @@ def train_cifar10(opt, optimizer_opts):
     train_accuracies = []
     test_accuracies = []
     train_loss_data = []
-    best_acc = 0
 
     if opt.wandb_project:
         import wandb

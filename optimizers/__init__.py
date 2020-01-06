@@ -1,6 +1,7 @@
 import argparse
 import torch.optim as optim
 
+from .adabound import AdaBound
 from .rmsprop import RMSprop, RMSprop_LRD
 from .sgd import SGD_LRD, SGDAggMo
 from .adam import Adam_LRD
@@ -74,6 +75,15 @@ optimizer_defaults = {
         'centered': False,
         'dropout': 0.5,
     }),
+    'adabound': (AdaBound, 'AdaBound', {
+        'lr': 0.001,
+        'weight_decay': 5e-4,
+        'betas': (0.9, 0.999),
+        'eps': 1e-8,
+        'final_lr': 0.1,
+        'gamma': 1e-3,
+        'amsbound': False,
+    })
 }
 
 
