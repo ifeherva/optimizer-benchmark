@@ -43,6 +43,21 @@ optimizer_defaults = {
         'eps': 1e-8,
         'dropout': 0.5,
     }),
+    'radam': (RAdam_LRD, 'RADAM', {
+        'lr': 0.03,
+        'weight_decay': 5e-4,
+        'betas': (0.9, 0.999),
+        'eps': 1e-8,
+        'amsgrad': False,
+        'dropout': 0,
+    }),
+    'radam_lrd': (RAdam_LRD, 'RADAM_LRD', {
+        'lr': 0.03,
+        'weight_decay': 5e-4,
+        'betas': (0.9, 0.999),
+        'eps': 1e-8,
+        'dropout': 0.5,
+    }),
     'rmsprop': (RMSprop, 'RMSprop', {
         'lr': 0.001,
         'weight_decay': 5e-4,

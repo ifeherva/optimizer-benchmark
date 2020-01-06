@@ -1,4 +1,4 @@
-"""Code copied from https://github.com/LiyuanLucasLiu/RAdam/blob/master/nmt/my_module/radam.py"""
+"""Code copied from https://github.com/LiyuanLucasLiu/RAdam/blob/master/nmt/my_module/radam.py and modified with lr dropout"""
 import math
 import torch
 from torch.optim.optimizer import Optimizer
