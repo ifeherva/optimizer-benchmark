@@ -141,7 +141,7 @@ def train_cifar10(opt, optimizer_opts):
 
     if opt.wandb_project:
         import wandb
-        wandb.init(project=opt.wandb_project, name=run_name)
+        wandb.init(project=opt.wandb_project, name=run_name, config=opt)
 
     for epoch in range(opt.epochs):
         train_acc, train_loss = train_epoch(net, epoch, device, train_loader, optimizer, criterion)
@@ -156,14 +156,15 @@ def train_cifar10(opt, optimizer_opts):
                 'Test Accuracy': test_acc
             })
 
-        # Save checkpoint.
-        if test_acc > best_acc:
-            print('Saving..')
-            best_acc = test_acc
-
         train_accuracies.append(train_acc)
         test_accuracies.append(test_acc)
         train_loss_data.append(train_loss)
+
+    if opt.wandb_project:
+        # Update summary to the best value
+        wandb.summary['Training Loss'] = min(train_loss_data)
+        wandb.summary['Training Accuracy'] = max(train_accuracies)
+        wandb.summary['Test Accuracy'] = max(test_accuracies)
 
 
 if __name__ == '__main__':
