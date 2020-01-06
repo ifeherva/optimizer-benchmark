@@ -16,6 +16,8 @@ Supported optimizers:
 5. Adam with Learning Rate Dropout (ADAM_LRD) [[arXiv]](https://arxiv.org/pdf/1912.00144.pdf)
 6. RMSProp [[Lecture Notes]](https://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
 7. RMSProp with Learning Rate Dropout [[arXiv]](https://arxiv.org/pdf/1912.00144.pdf)
+8. RAdam: On the Variance of the Adaptive Learning Rate and Beyond [[arXiv]](https://arxiv.org/abs/1908.03265)
+9. RAdam with Learning Rate Dropout [[arXiv]](https://arxiv.org/pdf/1912.00144.pdf)
 
 Results:
 ------
