@@ -45,12 +45,11 @@ def build_dataset():
 
     trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True,
                                             transform=transform_train)
-    train_loader = DataLoader(trainset, batch_size=128, shuffle=True,
-                              num_workers=2)
+    train_loader = DataLoader(trainset, batch_size=128, shuffle=True, num_workers=4)
 
     testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True,
                                            transform=transform_test)
-    test_loader = DataLoader(testset, batch_size=100, shuffle=False, num_workers=2)
+    test_loader = DataLoader(testset, batch_size=100, shuffle=False, num_workers=4)
 
     # classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
@@ -76,7 +75,7 @@ def test(net, device, data_loader):
     correct = 0
     total = 0
     with torch.no_grad():
-        for batch_idx, (inputs, targets) in enumerate(data_loader):
+        for batch_idx, (inputs, targets) in tqdm(enumerate(data_loader), total=len(data_loader)):
             inputs, targets = inputs.to(device), targets.to(device)
             outputs = net(inputs)
 
@@ -95,7 +94,7 @@ def train_epoch(net, epoch, device, data_loader, optimizer, criterion):
     train_loss = 0
     correct = 0
     total = 0
-    for batch_idx, (inputs, targets) in tqdm(enumerate(data_loader), desc='Epoch {}'.format(epoch)):
+    for batch_idx, (inputs, targets) in tqdm(enumerate(data_loader), desc='Epoch {}'.format(epoch), total=len(data_loader)):
         inputs, targets = inputs.to(device), targets.to(device)
         optimizer.zero_grad()
         outputs = net(inputs)

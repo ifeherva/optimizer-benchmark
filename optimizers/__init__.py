@@ -49,7 +49,7 @@ optimizer_defaults = {
         'betas': (0.9, 0.999),
         'eps': 1e-8,
         'amsgrad': False,
-        'dropout': 0,
+        'dropout': 0.0,
     }),
     'radam_lrd': (RAdam_LRD, 'RADAM_LRD', {
         'lr': 0.03,
