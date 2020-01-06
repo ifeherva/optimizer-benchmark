@@ -84,9 +84,9 @@ def parse_optim_args(args, default_args):
         if type(v) == bool:
             kwargs = {'action': 'store_false' if v else 'store_true'}
         elif type(v) == list:
-            kwargs = {'type': type(v[0]), 'nargs': '+'}
+            kwargs = {'type': type(v[0]), 'nargs': '+', 'default': v}
         elif type(v) == tuple:
-            kwargs = {'type': type(v[0]), 'nargs': '+', 'action': required_length(len(v))}
+            kwargs = {'type': type(v[0]), 'nargs': '+', 'action': required_length(len(v)), 'default': v}
         else:
             kwargs = {'type': type(v), 'default': v}
         parser.add_argument('--{}'.format(k), **kwargs)
