@@ -69,6 +69,7 @@ class SGD_LRD(Optimizer):
         return loss
 
 
+# Code copied from https://github.com/AtheMathmo/AggMo/blob/master/src/aggmo.py
 class SGDAggMo(Optimizer):
     r"""Implements Aggregated Momentum Gradient Descent
     """
