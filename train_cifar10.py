@@ -18,7 +18,7 @@ def parse_args(argv=None):
     """Parse command line arguments"""
     parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
     parser.add_argument('--model', default='resnet34', type=str, help='model',
-                        choices=['resnet', 'densenet'])
+                        choices=['resnet34'])
     parser.add_argument('--optim', type=str, help='optimizer', required=True,
                         choices=supported_optimizers())
     parser.add_argument('--seed', type=int, default=123, help='Random seed to use. default=123.')
