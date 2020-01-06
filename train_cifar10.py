@@ -141,6 +141,7 @@ def train_cifar10(opt, optimizer_opts):
     if opt.wandb_project:
         import wandb
         wandb.init(project=opt.wandb_project, name=run_name, config=opt)
+        wandb.watch(net)
 
     for epoch in range(opt.epochs):
         train_acc, train_loss = train_epoch(net, epoch, device, train_loader, optimizer, criterion)
