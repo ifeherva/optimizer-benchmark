@@ -14,7 +14,7 @@ from models.resnet_cifar10 import ResNet34
 from optimizers import parse_optimizer, supported_optimizers
 
 
-def parse_args():
+def parse_args(argv=None):
     """Parse command line arguments"""
     parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
     parser.add_argument('--model', default='resnet34', type=str, help='model',
@@ -25,7 +25,7 @@ def parse_args():
     parser.add_argument('--epochs', type=int, default=200, help='Number of epochs')
     parser.add_argument('--wandb-project', type=str, help='Project name on Weights&Biases')
 
-    args, optim_args = parser.parse_known_args()
+    args, optim_args = parser.parse_known_args(argv)
     return args, optim_args
 
 
