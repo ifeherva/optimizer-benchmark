@@ -4,7 +4,7 @@ import torch.optim as optim
 from .rmsprop import RMSprop, RMSprop_LRD
 from .sgd import SGD_LRD, SGDAggMo
 from .adam import Adam_LRD
-from .radam import RAdam_LRD
+from .radam import RAdam_LRD, RAdam
 
 __all__ = ['parse_optimizer', 'supported_optimizers']
 
@@ -43,13 +43,12 @@ optimizer_defaults = {
         'eps': 1e-8,
         'dropout': 0.5,
     }),
-    'radam': (RAdam_LRD, 'RADAM', {
+    'radam': (RAdam, 'RADAM', {
         'lr': 0.03,
         'weight_decay': 5e-4,
         'betas': (0.9, 0.999),
         'eps': 1e-8,
-        'amsgrad': False,
-        'dropout': 0.0,
+        'degenerated_to_sgd': True,
     }),
     'radam_lrd': (RAdam_LRD, 'RADAM_LRD', {
         'lr': 0.03,
