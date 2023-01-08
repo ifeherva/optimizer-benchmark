@@ -83,7 +83,14 @@ optimizer_defaults = {
         'final_lr': 0.1,
         'gamma': 1e-3,
         'amsbound': False,
-    })
+    }),
+    'adamw': (optim.AdamW, 'ADAMW', {
+        'lr': 0.001,
+        'weight_decay': 5e-4,
+        'betas': (0.9, 0.999),
+        'eps': 1e-8,
+        'amsgrad': False,
+    }),
 }
 
 
