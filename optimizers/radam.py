@@ -57,7 +57,7 @@ class RAdam(Optimizer):
                 exp_avg, exp_avg_sq = state['exp_avg'], state['exp_avg_sq']
                 beta1, beta2 = group['betas']
 
-                exp_avg_sq.mul_(beta2).addcmul_(1 - beta2, grad, grad)
+                exp_avg_sq.mul_(beta2).addcmul_(grad, grad, value=1 - beta2)
                 exp_avg.mul_(beta1).add_(1 - beta1, grad)
 
                 state['step'] += 1
@@ -88,12 +88,11 @@ class RAdam(Optimizer):
                         p_data_fp32.add_(-group['weight_decay'] * group['lr'], p_data_fp32)
                     denom = exp_avg_sq.sqrt().add_(group['eps'])
                     p_data_fp32.addcdiv_(-step_size * group['lr'], exp_avg, denom)
-                    p.data.copy_(p_data_fp32)
                 elif step_size > 0:
                     if group['weight_decay'] != 0:
                         p_data_fp32.add_(-group['weight_decay'] * group['lr'], p_data_fp32)
                     p_data_fp32.add_(-step_size * group['lr'], exp_avg)
-                    p.data.copy_(p_data_fp32)
+                p.data.copy_(p_data_fp32)
 
         return loss
 
@@ -130,7 +129,6 @@ class RAdam_LRD(Optimizer):
                 grad = p.grad.data.float()
                 if grad.is_sparse:
                     raise RuntimeError('Adam does not support sparse gradients, please consider SparseAdam instead')
-                amsgrad = group['amsgrad']
 
                 p_data_fp32 = p.data.float()
 
@@ -151,7 +149,7 @@ class RAdam_LRD(Optimizer):
                 exp_avg, exp_avg_sq = state['exp_avg'], state['exp_avg_sq']
                 beta1, beta2 = group['betas']
 
-                exp_avg_sq.mul_(beta2).addcmul_(1 - beta2, grad, grad)
+                exp_avg_sq.mul_(beta2).addcmul_(grad, grad, value=1 - beta2)
                 exp_avg.mul_(beta1).add_(1 - beta1, grad)
 
                 state['step'] += 1
@@ -177,7 +175,7 @@ class RAdam_LRD(Optimizer):
                     step_size = group['lr'] / (1 - beta1 ** state['step'])
 
                     # p_data_fp32.add_(-step_size, exp_avg)
-                    p_data_fp32.addcmul_(-step_size, exp_avg, mask)
+                    p_data_fp32.addcmul_(exp_avg, mask, value=-step_size)
 
                 p.data.copy_(p_data_fp32)
 
