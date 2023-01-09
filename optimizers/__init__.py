@@ -2,6 +2,7 @@ import argparse
 import torch.optim as optim
 
 from .adabound import AdaBound
+from .coolmomentum import Coolmomentum
 from .rmsprop import RMSprop, RMSprop_LRD
 from .sgd import SGD_LRD, SGDAggMo
 from .adam import Adam_LRD
@@ -90,6 +91,12 @@ optimizer_defaults = {
         'betas': (0.9, 0.999),
         'eps': 1e-8,
         'amsgrad': False,
+    }),
+    'coolmomentum': (Coolmomentum, 'Coolmomentum', {
+        'lr': 0.1,
+        'momentum': 0.99,
+        'weight_decay': 5e-4,
+        'beta': 0.99997,
     }),
 }
 

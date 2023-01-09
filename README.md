@@ -20,6 +20,7 @@ Supported optimizers:
 9. RAdam with Learning Rate Dropout [[arXiv]](https://arxiv.org/pdf/1912.00144.pdf)
 10. AdaBound: Adaptive Gradient Methods with Dynamic Bound of Learning Rate [[ICLR2019]](https://openreview.net/pdf?id=Bkg3g2R9FX) 
 11. AdamW: Decoupled Weight Decay Regularization [[arxiv]](https://arxiv.org/abs/1711.05101)
+12. Coolmomentum: Stochastic Optimization by Langevin Dynamics with Simulated Annealing [[Nature Scientific Reports]](https://www.nature.com/articles/s41598-021-90144-3)
 
 Results:
 ------
