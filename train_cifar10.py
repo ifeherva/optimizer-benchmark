@@ -23,6 +23,7 @@ def parse_args(argv=None):
                         choices=supported_optimizers())
     parser.add_argument('--seed', type=int, default=123, help='Random seed to use. default=123.')
     parser.add_argument('--epochs', type=int, default=200, help='Number of epochs')
+    parser.add_argument('--milestones', type=int, default=[100, 150], nargs='?')
     parser.add_argument('--wandb-project', type=str, help='Project name on Weights&Biases')
 
     args, optim_args = parser.parse_known_args(argv)
@@ -127,7 +128,7 @@ def train_cifar10(opt, optimizer_opts):
 
     criterion = CrossEntropyLoss()
     optimizer, optimizer_run_name = parse_optimizer(opt.optim, optimizer_opts, net.parameters())
-    scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[100, 150], gamma=0.1)
+    scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=opt.milestones, gamma=0.1)
 
     run_name = 'cifar10_{}'.format(
         optimizer_run_name
