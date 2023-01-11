@@ -1,12 +1,14 @@
 import argparse
+import math
+
 import torch.optim as optim
 
 from .adabound import AdaBound
+from .adam import Adam_LRD
 from .coolmomentum import Coolmomentum
+from .radam import RAdam_LRD, RAdam
 from .rmsprop import RMSprop, RMSprop_LRD
 from .sgd import SGD_LRD, SGDAggMo
-from .adam import Adam_LRD
-from .radam import RAdam_LRD, RAdam
 
 __all__ = ['parse_optimizer', 'supported_optimizers']
 
@@ -93,10 +95,11 @@ optimizer_defaults = {
         'amsgrad': False,
     }),
     'coolmomentum': (Coolmomentum, 'Coolmomentum', {
-        'lr': 0.1,
+        'lr': 0.01,
         'momentum': 0.99,
         'weight_decay': 5e-4,
-        'beta': 0.99997,
+        'beta': (1 - 0.99)**(1/(200*math.ceil(50000/128))),
+        'dropout': 0.0,
     }),
 }
 

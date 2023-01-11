@@ -20,7 +20,6 @@ class Coolmomentum(Optimizer):
         self.T = 0.0
         self.number = 0
         self.iteration = 0
-        self.filename = 'temperature.txt'
 
     def __setstate__(self, state):
         super(Coolmomentum, self).__setstate__(state)
@@ -66,10 +65,7 @@ class Coolmomentum(Optimizer):
                 p.data.add_(step)
 
         if self.iteration % 391 == 0:
-            self.T = self.T / self.number  # compute temperature
-            tfile = open(self.filename, "a+")
-            print(self.iteration, self.T, rho, file=tfile)
-            tfile.close()
+            # self.T = self.T / self.number  # compute temperature
             self.T = 0.0
             self.number = 0
         self.iteration += 1
